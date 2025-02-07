@@ -5,7 +5,7 @@
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "slice_of_knice.jpg"
+    "default_icon": "slice_of_knice.jpg",
     "default_title": "Knice"
   },
   "permissions": [],
