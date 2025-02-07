@@ -2,8 +2,8 @@
 /*** "Go to Top" and "Go to Bottom" Scroll buttons ***/
 /*****************************************************/
 $(document).on('knack-scene-render.any', function(event, scene) {  
-  //const excludedScenes = ['scene_1', 'scene_2'] // Add scenes where you don't want the buttons to appear
-  //if (excludedScenes.includes(scene.key)) return
+  const excludedScenes = ['scene_8'] // Add scenes where you don't want the buttons to appear
+  if (excludedScenes.includes(scene.key)) return
   const isModal = Knack.modals.length != 0
   const markup = 
   `
