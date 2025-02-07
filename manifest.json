@@ -20,7 +20,7 @@
   ],
   "content_scripts": [
     {
-      "matches": [ "https://builder.knack.com/*" ],
+      "matches": [ "https://atd.knack.com/*" ],
       "js": [ "knice.js" ],
       "run_at": "document_idle"
     }
