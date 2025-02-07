@@ -5,6 +5,7 @@
   "manifest_version": 3,
   "icons": {
     "16": "slice_of_knice.png",
+    "32": "slice_of_knice.png",
     "48": "slice_of_knice.png",
     "128": "slice_of_knice.png"
   },
@@ -20,7 +21,10 @@
   ],
   "content_scripts": [
     {
-      "matches": [ "https://atd.knack.com/*" ],
+      "matches": [ 
+        "https://builder.knack.com/*",
+        "https://atd.knack.com/*"
+      ],
       "js": [ "knice.js" ],
       "run_at": "document_idle"
     }
