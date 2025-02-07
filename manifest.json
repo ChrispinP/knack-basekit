@@ -14,7 +14,10 @@
     "default_title": "Knice"
   },
   "permissions": [],
-  "host_permissions": [ "https://builder.knack.com/*" ],
+  "host_permissions": [ 
+    "https://builder.knack.com/*",
+    "https://atd.knack.com/*"
+  ],
   "content_scripts": [
     {
       "matches": [ "https://builder.knack.com/*" ],
