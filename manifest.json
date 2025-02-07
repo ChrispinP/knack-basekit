@@ -12,5 +12,14 @@
     "default_popup": "popup.html",
     "default_icon": "slice_of_knice.png",
     "default_title": "Knice"
-  }
+  },
+  "permissions": [],
+  "host_permissions": [ "https://dashboard.knack.com/apps*" ],
+  "content_scripts": [
+    {
+      "matches": [ "https://dashboard.knack.com/apps*" ],
+      "js": [ "knice.js" ],
+      "run_at": "document_idle"
+    }
+  ]
 }
