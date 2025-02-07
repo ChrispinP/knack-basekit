@@ -1,22 +1,25 @@
-const article = document.querySelector("article");
+function reorderNavItems() {
+    const sidebarNav = document.querySelector('#sidebar-nav ul');
+    if (!sidebarNav) return;
 
-// `document.querySelector` may return null if the selector doesn't match anything.
-if (article) {
-  const text = article.textContent;
-  const wordMatchRegExp = /[^\s]+/g; // Regular expression
-  const words = text.matchAll(wordMatchRegExp);
-  // matchAll returns an iterator, convert to array to get word count
-  const wordCount = [...words].length;
-  const readingTime = Math.round(wordCount / 200);
-  const badge = document.createElement("p");
-  // Use the same styling as the publish information in an article's header
-  badge.classList.add("color-secondary-text", "type--caption");
-  badge.textContent = `⏱️ ${readingTime} min read`;
+    const order = [
+        'Settings',
+        'Data',
+        'Pages',
+        'Flows',
+        'Tasks',
+        'Data Model'
+    ];
 
-  // Support for API reference docs
-  const heading = article.querySelector("h1");
-  // Support for article docs with date
-  const date = article.querySelector("time")?.parentNode;
+    const items = Array.from(sidebarNav.querySelectorAll('li'));
+    const sortedItems = [];
 
-  (date ?? heading).insertAdjacentElement("afterend", badge);
+    order.forEach(name => {
+        const item = items.find(li => li.textContent.trim() === name);
+        if (item) {
+            sortedItems.push(item);
+        }
+    });
+
+    sortedItems.forEach(item => sidebarNav.appendChild(item));
 }
