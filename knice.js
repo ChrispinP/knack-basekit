@@ -220,11 +220,11 @@ function reorderNavItems() {
     if (!sidebarNav) return;
 
     const order = [
+        'Settings',
         'Data',
         'Pages',
-        'Tasks',
         'Flows',
-        'Settings',
+        'Tasks',
         'Data Model'
     ];
 
