@@ -1,50 +1,22 @@
-/*****************************************************/
-/*** "Go to Top" and "Go to Bottom" Scroll buttons ***/
-/*****************************************************/
-$(document).on('knack-scene-render.any', function(event, scene) {  
-  const excludedScenes = ['scene_8'] // Add scenes where you don't want the buttons to appear
-  if (excludedScenes.includes(scene.key)) return
-  const isModal = Knack.modals.length != 0
-  const markup = 
-  `
-    <div id="scroll-buttons">
-      <button id="go-to-top" class="kn-button">
-        <i class="fa fa-arrow-up"></i>
-      </button>
-      <button id="go-to-bottom" class="kn-button">
-        <i class="fa fa-arrow-down"></i>
-      </button>
-    </div>
-  `
-  const target = isModal ? '.kn-modal-bg' : `#kn-${Knack.router.current_scene_key}`
-  const buttons = isModal ? '.kn-modal-bg #scroll-buttons' : `#kn-${Knack.router.current_scene_key} #scroll-buttons`
-  const topButton = isModal ? '.kn-modal-bg #go-to-top' : `#kn-${Knack.router.current_scene_key} #go-to-top`
-  const bottomButton = isModal ? '.kn-modal-bg #go-to-bottom' : `#kn-${Knack.router.current_scene_key} #go-to-bottom`
-  const hasButtons = $(buttons).length
+const article = document.querySelector("article");
 
-  if (hasButtons) return
-  
-  $(target).append(markup)
-  const topElement = isModal ? '.kn-modal-bg' : 'html, body'
-  
-  $(topButton).on('click', function(e) {
-    $(topElement).animate({ scrollTop: 0 }, "fast")
-  })
+// `document.querySelector` may return null if the selector doesn't match anything.
+if (article) {
+  const text = article.textContent;
+  const wordMatchRegExp = /[^\s]+/g; // Regular expression
+  const words = text.matchAll(wordMatchRegExp);
+  // matchAll returns an iterator, convert to array to get word count
+  const wordCount = [...words].length;
+  const readingTime = Math.round(wordCount / 200);
+  const badge = document.createElement("p");
+  // Use the same styling as the publish information in an article's header
+  badge.classList.add("color-secondary-text", "type--caption");
+  badge.textContent = `⏱️ ${readingTime} min read`;
 
-  $(bottomButton).on('click', function(e) {
-    $(topElement).animate({ scrollTop: $(document).height() }, "fast")
-  })
+  // Support for API reference docs
+  const heading = article.querySelector("h1");
+  // Support for article docs with date
+  const date = article.querySelector("time")?.parentNode;
 
-  $(buttons).css('visibility', 'visible')
-  const scrollableElement = isModal ? '.kn-modal-bg' : window
-  
-  $(scrollableElement).on('scroll',function() {
-    const scroll = $(scrollableElement).scrollTop()
-
-    if (scroll >= 50) {
-      $(buttons).css('visibility', 'visible')
-    } else {
-      $(buttons).css('visibility', 'hidden')
-    }
-  })
-})
+  (date ?? heading).insertAdjacentElement("afterend", badge);
+}
