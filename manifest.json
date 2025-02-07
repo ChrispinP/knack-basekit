@@ -3,7 +3,11 @@
   "description": "Make Knack nicer, with a slice of knice!",
   "version": "1.0",
   "manifest_version": 3,
-  "icon": "slice_of_knice.png",
+  "icons": {
+    "16": "slice_of_knice.png",
+    "48": "slice_of_knice.png",
+    "128": "slice_of_knice.png"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": "slice_of_knice.png",
