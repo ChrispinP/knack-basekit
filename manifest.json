@@ -1,0 +1,20 @@
+{
+  "name": "Knice",
+  "description": "Make Knack nicer, with a slice of knice!",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "slice_of_knice.jpg"
+    "default_title": "Knice"
+  },
+  "permissions": [],
+  "host_permissions": [ "https://builder.knack.com/*" ],
+  "content_scripts": [
+    {
+      "matches": [ "https://builder.knack.com/*" ],
+      "js": [ "Knice.js" ],
+      "run_at": "document_idle"
+    }
+  ]
+}
